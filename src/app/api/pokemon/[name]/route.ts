@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function GET(request: Request, { params }: { params: { name: string } }) {
-  const { name } = await params; // Await params
+  const { name } = params; // No need to await params
 
   if (!name) {
     return NextResponse.json({ error: 'Name parameter is required.' }, { status: 400 });
