@@ -1,10 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(request: Request, { params }: { params: { name: string } }) {
-  const { name } = params; // Use the params object directly
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { name: string } }
+) {
+  const name = params.name;
 
   if (!name) {
     return NextResponse.json({ error: 'Name parameter is required.' }, { status: 400 });
@@ -13,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { name: string
   try {
     const pokemon = await prisma.pokemon.findUnique({
       where: {
-        name: name, // Use the name field which is unique
+        name: name,
       },
     });
 
@@ -28,11 +31,14 @@ export async function GET(request: Request, { params }: { params: { name: string
     return NextResponse.json({
       id: pokemon.id,
       name: pokemon.name,
-      types, // Join types into a string
+      types,
       sprite: pokemon.sprite,
     });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'An error occurred while fetching the Pokémon.' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'An error occurred while fetching the Pokémon.' },
+      { status: 500 }
+    );
   }
 }
