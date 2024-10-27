@@ -3,11 +3,17 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+type Props = {
+  params: {
+    name: string;
+  };
+};
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { name: string } }
+  context: Props
 ) {
-  const name = params.name;
+  const { name } = context.params;
 
   if (!name) {
     return NextResponse.json({ error: 'Name parameter is required.' }, { status: 400 });
