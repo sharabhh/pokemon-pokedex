@@ -3,26 +3,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-type Props = {
+interface RouteParams {
   params: {
     name: string;
   };
-};
+}
 
 export async function GET(
-  request: NextRequest,
-  context: Props
+  request: Request,  // Changed to Request instead of NextRequest
+  { params }: RouteParams
 ) {
-  const { name } = context.params;
-
-  if (!name) {
-    return NextResponse.json({ error: 'Name parameter is required.' }, { status: 400 });
-  }
-
   try {
     const pokemon = await prisma.pokemon.findUnique({
       where: {
-        name: name,
+        name: params.name,
       },
     });
 
