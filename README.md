@@ -2,7 +2,7 @@ Local Project setup
 
 Recommended approach:
 use my online database instance (you won't have to enter the data into the database this way).
-- rename the .env.example to .env and update the variable with the link
+- rename the .env.example to .env 
 - install node modules by running `npm install` in terminal
 - run `npm run dev`
 
