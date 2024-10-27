@@ -13,7 +13,7 @@ interface PokedexTableProps {
 
 export const PokedexTable: React.FC<PokedexTableProps> = ({ pokemonArray }) => (
   <div className="pokedex-table">
-    {pokemonArray.map((pokemon: any) => (
+    {pokemonArray.map((pokemon) => (
       <PokemonRow key={pokemon.id} pokemon={pokemon} />
     ))}
   </div>
