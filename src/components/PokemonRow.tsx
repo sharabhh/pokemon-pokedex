@@ -1,6 +1,7 @@
 // src/components/PokemonRow.tsx
 import React from 'react';
 import styles from './PokemonRow.module.css'
+import Image from 'next/image';
 
 interface Pokemon {
   id: number;
@@ -26,7 +27,7 @@ export const PokemonRow: React.FC<PokemonRowProps> = ({ pokemon }) => {
       <h3>{pokemon.name}</h3>
       {/* <p>ID: {pokemon.id}</p> */}
       <p>Types: {pokemon.types}</p> {/* Display types */}
-      <img src={pokemon.sprite} alt={`${pokemon.name} sprite`} />
+      <Image src={pokemon.sprite} alt={`${pokemon.name} sprite`} />
     </div>
   );
 };

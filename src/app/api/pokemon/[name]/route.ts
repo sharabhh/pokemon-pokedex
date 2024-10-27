@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function GET(request: Request, { params }: { params: { name: string } }) {
-  const { name } = params; // No need to await params
+  const { name } = params; // Use the params object directly
 
   if (!name) {
     return NextResponse.json({ error: 'Name parameter is required.' }, { status: 400 });
@@ -20,9 +20,6 @@ export async function GET(request: Request, { params }: { params: { name: string
     if (!pokemon) {
       return NextResponse.json({ error: 'Pokemon not found.' }, { status: 404 });
     }
-
-    // Debugging: Log the fetched Pokémon object
-    console.log('Fetched Pokémon:', pokemon);
 
     // If `types` is an array, join it
     const types = Array.isArray(pokemon.types) ? pokemon.types.join(', ') : '';
