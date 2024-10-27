@@ -20,10 +20,6 @@ export const PokemonRow: React.FC<PokemonRowProps> = ({ pokemon }) => {
   console.log('from frontend',Array.isArray(pokemon.types));
   
 
-  // Check if types is an array
-  const typesString = Array.isArray(pokemon.types) 
-    ? pokemon.types.join(', ') 
-    : 'Unknown types'; // Fallback if types is not an array
 
   return (
     <div className={styles["pokemon-row"]}>

@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 export const PokemonTypeSelection = ({ selectedType, selectType }) => {
     const types = ['grass', 'fire', 'water', 'electric', 'psychic', 'rock'];
   
